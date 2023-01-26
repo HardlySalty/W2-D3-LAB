@@ -1,6 +1,7 @@
 let storeContainer = document.querySelector("#store-inventory")
 let cartContainer = document.querySelector("#cart-inventory")
 let cartTotal = document.querySelector("#cart-total")
+let total = 0
 
 let storeInventory = [
   { name: 'banana', price: 3, quanity: 0, inStock: true, img: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80' },
@@ -25,7 +26,7 @@ function drawStoreInventory() {
       <div class="bg-secondary text-light text-center card">
         <img src="${e.img}" class="img-fluid img-height">
         <span class="d-flex justify-content-center align-items-center">
-          <p class="px-2 fs-5">$${e.price}</p>
+        <p class="px-2 fs-5">$${e.price}</p>
           <p class="fs-3">|</p>
           <p class="px-2 fs-5">${e.name}</p>
         </span>
@@ -38,7 +39,6 @@ function drawStoreInventory() {
 }
 
 function addToCart(name) {
-  let total = 0
 
   let cartProduct = cartInventory.find(e => e.name == name)
   if (cartProduct != undefined) {
@@ -78,6 +78,13 @@ function addToCart(name) {
   })
   cartTotal.innerText = `Total: $${total}`
 
+}
+
+function resetCart(){
+  cartContainer.innerHTML = ''
+  cartInventory = []
+  total = 0
+  cartTotal.innerText = total
 }
 
 drawStoreInventory()
